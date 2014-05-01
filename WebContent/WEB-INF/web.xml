@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance "
+	xmlns="http://www.oracle.com/webfolder/technetwork/jsc/xml/ns/javaee "
+	xmlns:web="http://www.oracle.com/webfolder/technetwork/jsc/xml/ns/javaee/web-app_2_5.xsd "
+	xsi:schemaLocation="http://www.oracle.com/webfolder/technetwork/jsc/xml/ns/javaee  http://www.oracle.com/webfolder/technetwork/jsc/xml/ns/javaee/web-app_2_5.xsd "
+	id="WebApp_ID" version="2.5">
+
+	<display-name>jaxwsExample</display-name>
+
+	<listener>
+		<listener-class>com.sun.xml.ws.transport.http.servlet.WSServletContextListener
+		</listener-class>
+	</listener>
+	<servlet>
+		<servlet-name>Mediatheque-WebService</servlet-name>
+		<servlet-class>com.sun.xml.ws.transport.http.servlet.WSServlet
+		</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Mediatheque-WebService</servlet-name>
+		<url-pattern>/helloWebService</url-pattern>
+	</servlet-mapping>
+	<session-config>
+		<session-timeout>120</session-timeout>
+	</session-config>
+</web-app>
