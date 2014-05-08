@@ -17,48 +17,49 @@ import org.dbunit.dataset.xml.FlatXmlDataSet;
 import org.junit.Test;
 
 public class DBUnitTools {
-	@Test
-	public void backupDB() throws FileNotFoundException, IOException,
-			DatabaseUnitException, SQLException {
-		// database connection
-		try (final Connection jdbcConnection = DriverManager.getConnection(
-				"jdbc:mysql://localhost:3306/mediatheque", "root", "")) {
-			final IDatabaseConnection connection = new DatabaseConnection(
-					jdbcConnection);
+    @Test
+    public void backupDB() throws FileNotFoundException, IOException,
+    DatabaseUnitException, SQLException {
+        // database connection
+        try (final Connection jdbcConnection = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/mediatheque", "root", "")) {
+            final IDatabaseConnection connection = new DatabaseConnection(
+                    jdbcConnection);
 
-			// full database export
-			try (final FileOutputStream os = new FileOutputStream("full.xml")) {
-				final IDataSet fullDataSet = connection.createDataSet();
-				FlatXmlDataSet.write(fullDataSet, os);
-			}
+            // full database export
+            try (final FileOutputStream os = new FileOutputStream(
+                    "target/full.xml")) {
+                final IDataSet fullDataSet = connection.createDataSet();
+                FlatXmlDataSet.write(fullDataSet, os);
+            }
 
-			// dependent tables database export: export table X and all tables
-			// that have a PK which is a FK on X, in the right order for
-			// insertion
-			try (final FileOutputStream os = new FileOutputStream(
-					"dependents.xml")) {
-				final String[] depTableNames = TablesDependencyHelper
-						.getAllDependentTables(connection, "user");
-				final IDataSet depDataset = connection
-						.createDataSet(depTableNames);
-				FlatXmlDataSet.write(depDataset, os);
-			}
-		}
-	}
+            // dependent tables database export: export table X and all tables
+            // that have a PK which is a FK on X, in the right order for
+            // insertion
+            try (final FileOutputStream os = new FileOutputStream(
+                    "target/dependents.xml")) {
+                final String[] depTableNames = TablesDependencyHelper
+                        .getAllDependentTables(connection, "user");
+                final IDataSet depDataset = connection
+                        .createDataSet(depTableNames);
+                FlatXmlDataSet.write(depDataset, os);
+            }
+        }
+    }
 
-	@Test
-	public void getDTD() throws FileNotFoundException, IOException,
-			DatabaseUnitException, SQLException {
-		// database connection
-		try (final Connection jdbcConnection = DriverManager.getConnection(
-				"jdbc:mysql://localhost:3306/mediatheque", "root", "")) {
-			final IDatabaseConnection connection = new DatabaseConnection(
-					jdbcConnection);
+    @Test
+    public void getDTD() throws FileNotFoundException, IOException,
+    DatabaseUnitException, SQLException {
+        // database connection
+        try (final Connection jdbcConnection = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/mediatheque", "root", "")) {
+            final IDatabaseConnection connection = new DatabaseConnection(
+                    jdbcConnection);
 
-			try (FileOutputStream fos = new FileOutputStream("test.dtd")) {
-				// write DTD file
-				FlatDtdDataSet.write(connection.createDataSet(), fos);
-			}
-		}
-	}
+            try (FileOutputStream fos = new FileOutputStream("target/test.dtd")) {
+                // write DTD file
+                FlatDtdDataSet.write(connection.createDataSet(), fos);
+            }
+        }
+    }
 }
