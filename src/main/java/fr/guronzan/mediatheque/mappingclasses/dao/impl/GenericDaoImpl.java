@@ -21,7 +21,7 @@ import fr.guronzan.mediatheque.mappingclasses.domain.DomainObject;
  * @param <K> K : PrimaryKey
  */
 public abstract class GenericDaoImpl<T extends DomainObject, K extends Serializable>
-        extends HibernateDaoSupport implements GenericDao<T, K> {
+extends HibernateDaoSupport implements GenericDao<T, K> {
 
     private final Class<T> type;
 
@@ -65,19 +65,18 @@ public abstract class GenericDaoImpl<T extends DomainObject, K extends Serializa
     @Override
     public void saveOrUpdate(final T o) {
         getHibernateTemplate().getSessionFactory().getCurrentSession()
-        .saveOrUpdate(o);
-
+                .saveOrUpdate(o);
     }
 
     @Override
     public void update(final T o) {
         getHibernateTemplate().getSessionFactory().getCurrentSession()
-        .update(o);
+                .update(o);
     }
 
     @Override
     public void delete(final T o) {
         getHibernateTemplate().getSessionFactory().getCurrentSession()
-        .delete(o);
+                .delete(o);
     }
 }

@@ -1,4 +1,4 @@
-﻿package fr.guronzan.mediatheque.mappingclasses.domain.types;
+package fr.guronzan.mediatheque.mappingclasses.domain.types;
 
 public enum CDKindType {
     ROCK("Rock"), VARIETE_FRANCAISE("Variete Francaise"), POP("Pop");

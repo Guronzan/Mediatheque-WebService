@@ -17,7 +17,7 @@ import fr.guronzan.mediatheque.mappingclasses.domain.Movie;
 @Scope("singleton")
 @SuppressWarnings("unchecked")
 public class MovieDaoImpl extends GenericDaoImpl<Movie, Integer> implements
-        MovieDao {
+MovieDao {
 
     @Autowired
     public MovieDaoImpl(
@@ -38,8 +38,7 @@ public class MovieDaoImpl extends GenericDaoImpl<Movie, Integer> implements
     }
 
     @Override
-    public Movie getMovieByTitleAndSeason(final String title,
-            final Integer seasonId) {
+    public Movie getMovieByTitleAndSeason(final String title, final int seasonId) {
         final StringBuffer hql = new StringBuffer(
                 "select movie from Movie movie ");
         hql.append(" where movie.title=:title ");

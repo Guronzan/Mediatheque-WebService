@@ -1,10 +1,5 @@
 package fr.guronzan.mediatheque.mappingclasses.dao.impl;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-
 import javax.annotation.Resource;
 
 import org.hibernate.exception.ConstraintViolationException;
@@ -14,6 +9,11 @@ import org.junit.Test;
 import fr.guronzan.mediatheque.mappingclasses.SpringTests;
 import fr.guronzan.mediatheque.mappingclasses.dao.BookDao;
 import fr.guronzan.mediatheque.mappingclasses.domain.Book;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 public class BookDaoImplTest extends SpringTests {
 
@@ -60,12 +60,12 @@ public class BookDaoImplTest extends SpringTests {
     @Test
     public void testContains() {
         // Find book with no tome defined
-        assertFalse(this.bookDao.contains(TITLE, null));
+        assertFalse(this.bookDao.contains(TITLE, -1));
         addNewBook();
-        assertTrue(this.bookDao.contains(TITLE, null));
+        assertTrue(this.bookDao.contains(TITLE, -1));
 
         // Find book with tome defined
-        assertFalse(this.bookDao.contains(TITLE2, null));
+        assertFalse(this.bookDao.contains(TITLE2, -1));
         addNewBook2();
         assertTrue(this.bookDao.contains(TITLE2, 2));
         assertFalse(this.bookDao.contains(TITLE2, 1));

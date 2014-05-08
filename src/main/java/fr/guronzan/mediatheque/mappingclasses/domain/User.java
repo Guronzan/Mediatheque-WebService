@@ -1,4 +1,4 @@
-﻿package fr.guronzan.mediatheque.mappingclasses.domain;
+package fr.guronzan.mediatheque.mappingclasses.domain;
 
 import java.io.File;
 import java.io.FileInputStream;

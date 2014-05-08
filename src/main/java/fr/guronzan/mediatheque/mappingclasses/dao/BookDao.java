@@ -12,7 +12,7 @@ public interface BookDao extends GenericDao<Book, Integer> {
 
     void removeAllBooks();
 
-    boolean contains(final String title, final Integer tome);
+    boolean contains(final String title, final int tome);
 
     ArrayList<Book> getBooksByEditor(final String editor);
 

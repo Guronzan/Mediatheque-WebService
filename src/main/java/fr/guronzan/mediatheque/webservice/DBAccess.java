@@ -16,7 +16,6 @@ import fr.guronzan.mediatheque.mappingclasses.dao.MovieDao;
 import fr.guronzan.mediatheque.mappingclasses.dao.UserDao;
 import fr.guronzan.mediatheque.mappingclasses.domain.Book;
 import fr.guronzan.mediatheque.mappingclasses.domain.Cd;
-import fr.guronzan.mediatheque.mappingclasses.domain.DomainObject;
 import fr.guronzan.mediatheque.mappingclasses.domain.Movie;
 import fr.guronzan.mediatheque.mappingclasses.domain.User;
 import fr.guronzan.mediatheque.mappingclasses.domain.encapsulatedTypes.DomainObjects;
@@ -116,7 +115,17 @@ public class DBAccess {
         return user.checkPassword(password);
     }
 
-    @WebMethod(operationName = "checkPasswordFromFullName")
+    @WebMethod(operationName = "checkPasswordFromNickName")
+    public boolean checkPasswordFromNickName(final String nickName,
+            final String password) {
+        final User user = USER_DAO.getUserByNickName(nickName);
+        if (user != null) {
+            return user.checkPassword(password);
+        }
+        return false;
+    }
+
+    @WebMethod(operationName = "checkPasswordFromNIck")
     public boolean checkPasswordFromFullName(final String name,
             final String forName, final String password) {
         final User user = USER_DAO.getUserByFullName(name, forName);
@@ -170,8 +179,8 @@ public class DBAccess {
     }
 
     @WebMethod(operationName = "getAllNotOwned")
-    public LinkedList<? extends DomainObject> getAllNotOwned(
-            final DataType dataType, final String currentUserNick) {
+    public DomainObjects getAllNotOwned(final DataType dataType,
+            final String currentUserNick) {
         switch (dataType) {
         case BOOK: {
             final List<Book> all = BOOK_DAO.getAll();
@@ -184,7 +193,7 @@ public class DBAccess {
                     books.add(book);
                 }
             }
-            return books;
+            return new DomainObjects(books);
         }
         case MOVIE: {
             final List<Movie> all = MOVIE_DAO.getAll();
@@ -197,7 +206,7 @@ public class DBAccess {
                     movies.add(movie);
                 }
             }
-            return movies;
+            return new DomainObjects(movies);
         }
         case MUSIC: {
             final List<Cd> all = CD_DAO.getAll();
@@ -210,7 +219,7 @@ public class DBAccess {
                     cds.add(cd);
                 }
             }
-            return cds;
+            return new DomainObjects(cds);
         }
         default:
             throw new IllegalArgumentException("Unknow state : "

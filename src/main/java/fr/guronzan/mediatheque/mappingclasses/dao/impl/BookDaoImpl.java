@@ -17,7 +17,7 @@ import fr.guronzan.mediatheque.mappingclasses.domain.Book;
 @Scope("singleton")
 @SuppressWarnings("unchecked")
 public class BookDaoImpl extends GenericDaoImpl<Book, Integer> implements
-        BookDao {
+BookDao {
 
     @Autowired
     public BookDaoImpl(
@@ -60,12 +60,12 @@ public class BookDaoImpl extends GenericDaoImpl<Book, Integer> implements
     }
 
     @Override
-    public boolean contains(final String title, final Integer tome) {
+    public boolean contains(final String title, final int tome) {
         final Book book = getBookByTitle(title);
         if (book == null) {
             return false;
         }
-        if (tome == null) {
+        if (tome == -1) {
             return true;
         }
 
