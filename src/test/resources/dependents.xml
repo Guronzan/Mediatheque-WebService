@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <book BOOK_ID="1" EDITOR="editeur" RELEASE_DATE="2013-08-08 00:00:00.0" TITLE="titre book1" PICTURE=""/>
+  <user USER_ID="1" FORNAME="user1" NAME="prenom1" PASSWORD="password" REGISTRATION_DATE="2013-08-29 10:29:30.0" AVATAR=""/>
+  <user USER_ID="2" FORNAME="user2" NAME="prenom2" PASSWORD="password" REGISTRATION_DATE="2013-08-29 14:25:20.0" AVATAR=""/>
+  <book_user USER_ID="1" BOOK_ID="1"/>
+  <cd CD_ID="1" KIND="1" RELEASE_DATE="2013-08-14 00:00:00.0" TITLE="cd1" PICTURE=""/>
+  <cd CD_ID="2" KIND="0" RELEASE_DATE="2013-08-14 10:00:00.0" TITLE="cd2" PICTURE=""/>
+  <cd_user USER_ID="1" CD_ID="1"/>
+  <cd_user USER_ID="1" CD_ID="2"/>
+  <movie MOVIE_ID="1" OWNED_DVD="true" RELEASE_DATE="2013-08-14 00:00:00.0" TITLE="movie1" PICTURE=""/>
+  <movie MOVIE_ID="2" OWNED_DVD="false" RELEASE_DATE="2013-08-15 00:00:00.0" TITLE="movie2" PICTURE=""/>
+  <movie_user USER_ID="1" MOVIE_ID="1"/>
+  <movie_user USER_ID="2" MOVIE_ID="1"/>
+  <movie_user USER_ID="1" MOVIE_ID="2"/>
+</dataset>

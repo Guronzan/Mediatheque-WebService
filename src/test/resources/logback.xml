@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true">
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{HH:mm:ss,SSS} %-5level %logger - %msg %n
+			</pattern>
+		</encoder>
+	</appender>
+	<appender name="fileAppender" class="ch.qos.logback.core.FileAppender">
+		<file>Mediatheque-WebService.log</file>
+		<append>true</append>
+		<encoder>
+			<pattern>%d{HH:mm:ss,SSS} %-5level %logger - %msg %n</pattern>
+		</encoder>
+	</appender>
+	
+	<!-- permet de spécifier certains type de log pour chaque class ou package 
+		-> correspond au LoggerFactory.getLogger(xxxx). On peut donc restreindre 
+		pour certaines classes en particuliuer et dépolluer le log de tout hibernate 
+		très pompeux... -->
+	<logger name="org.hibernate.type" level="INFO" />
+	<logger name="org.hibernate" level="INFO" />
+	<root>
+		<!-- logger de base, redirige tout vers stdout, chaque logger reimplemente 
+			une couche supplémentaire si besoin était -->
+		<appender-ref ref="STDOUT" level="trace" />
+		<appender-ref ref="fileAppender" level="info" />
+	</root>
+</configuration>

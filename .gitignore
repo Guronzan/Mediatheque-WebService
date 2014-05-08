@@ -4,3 +4,5 @@ target
 *.exe
 *.log
 /target
+/bin
+/target
