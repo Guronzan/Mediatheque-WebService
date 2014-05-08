@@ -1,4 +1,4 @@
-package fr.guronzan.mediatheque.mappingclasses.domain;
+ï»¿package fr.guronzan.mediatheque.mappingclasses.domain;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -76,9 +76,9 @@ public class User implements DomainObject {
 
     /**
      *
-     * Le hash du password est réalisé par l'appellant explicitement, au moment
-     * de la construction de l'objet User, afin que Hibernate ne réalise pas un
-     * hash a chaque fois que l'on appelle l'objet à partir de la base
+     * Le hash du password est realise par l'appellant explicitement, au moment
+     * de la construction de l'objet User, afin que Hibernate ne realise pas un
+     * hash a chaque fois que l'on appelle l'objet a partir de la base
      */
     public User(final String name, final String forName, final String nickName,
             final String password, final Date registrationDate) {
