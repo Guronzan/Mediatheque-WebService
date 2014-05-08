@@ -1,6 +1,5 @@
 package fr.guronzan.mediatheque.webservice;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -16,10 +15,12 @@ import fr.guronzan.mediatheque.mappingclasses.dao.CDDao;
 import fr.guronzan.mediatheque.mappingclasses.dao.MovieDao;
 import fr.guronzan.mediatheque.mappingclasses.dao.UserDao;
 import fr.guronzan.mediatheque.mappingclasses.domain.Book;
-import fr.guronzan.mediatheque.mappingclasses.domain.CD;
+import fr.guronzan.mediatheque.mappingclasses.domain.Cd;
 import fr.guronzan.mediatheque.mappingclasses.domain.DomainObject;
 import fr.guronzan.mediatheque.mappingclasses.domain.Movie;
 import fr.guronzan.mediatheque.mappingclasses.domain.User;
+import fr.guronzan.mediatheque.mappingclasses.domain.encapsulatedTypes.DomainObjects;
+import fr.guronzan.mediatheque.mappingclasses.domain.encapsulatedTypes.ListUsers;
 import fr.guronzan.mediatheque.mappingclasses.domain.types.DataType;
 
 @Repository("DbAccess")
@@ -73,7 +74,7 @@ public class DBAccess {
             user.addMovie(movie);
             break;
         case MUSIC:
-            final CD cd = CD_DAO.getCdByTitle(selectedElement.split(" - ")[0]);
+            final Cd cd = CD_DAO.getCdByTitle(selectedElement.split(" - ")[0]);
             assert cd != null;
             user.addCD(cd);
             break;
@@ -105,8 +106,8 @@ public class DBAccess {
     }
 
     @WebMethod(operationName = "getAllUsers")
-    public ArrayList<User> getAllUsers() {
-        return USER_DAO.getUsers();
+    public ListUsers getAllUsers() {
+        return new ListUsers(USER_DAO.getUsers());
     }
 
     @WebMethod(operationName = "checkPasswordFromID")
@@ -156,7 +157,7 @@ public class DBAccess {
     }
 
     @WebMethod(operationName = "addCD")
-    public Integer addCD(final CD cd) {
+    public Integer addCD(final Cd cd) {
         return CD_DAO.create(cd);
     }
 
@@ -199,9 +200,9 @@ public class DBAccess {
             return movies;
         }
         case MUSIC: {
-            final List<CD> all = CD_DAO.getAll();
-            final LinkedList<CD> cds = new LinkedList<>();
-            for (final CD cd : all) {
+            final List<Cd> all = CD_DAO.getAll();
+            final LinkedList<Cd> cds = new LinkedList<>();
+            for (final Cd cd : all) {
                 for (final User owner : cd.getOwners()) {
                     if (owner.getNickName().equals(currentUserNick)) {
                         continue;
@@ -218,14 +219,14 @@ public class DBAccess {
     }
 
     @WebMethod(operationName = "getAll")
-    public ArrayList<? extends DomainObject> getAll(final DataType dataType) {
+    public DomainObjects getAll(final DataType dataType) {
         switch (dataType) {
         case BOOK:
-            return BOOK_DAO.getAll();
+            return new DomainObjects(BOOK_DAO.getAll());
         case MOVIE:
-            return MOVIE_DAO.getAll();
+            return new DomainObjects(MOVIE_DAO.getAll());
         case MUSIC:
-            return CD_DAO.getAll();
+            return new DomainObjects(CD_DAO.getAll());
         default:
             throw new IllegalArgumentException("Unknow state : "
                     + dataType.getValue());

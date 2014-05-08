@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import fr.guronzan.mediatheque.mappingclasses.SpringTests;
 import fr.guronzan.mediatheque.mappingclasses.dao.CDDao;
-import fr.guronzan.mediatheque.mappingclasses.domain.CD;
+import fr.guronzan.mediatheque.mappingclasses.domain.Cd;
 import fr.guronzan.mediatheque.mappingclasses.domain.types.CDKindType;
 
 import static org.junit.Assert.assertFalse;
@@ -35,7 +35,7 @@ public class CDDaoImplTest extends SpringTests {
     }
 
     private Integer addNewCD() {
-        final CD cd = new CD(TITLE);
+        final Cd cd = new Cd(TITLE);
         cd.setAuthorName(AUTHOR);
         cd.setKind(CD_KIND_TYPE);
         return this.cdDao.create(cd);
@@ -61,7 +61,7 @@ public class CDDaoImplTest extends SpringTests {
 
         assertTrue(this.cdDao.getCdsByAuthor(AUTHOR).isEmpty());
         addNewCD();
-        final Collection<CD> cdsByAuthor = this.cdDao.getCdsByAuthor(AUTHOR);
+        final Collection<Cd> cdsByAuthor = this.cdDao.getCdsByAuthor(AUTHOR);
         assertFalse(cdsByAuthor.isEmpty());
         assertThat(cdsByAuthor.size(), is(1));
     }

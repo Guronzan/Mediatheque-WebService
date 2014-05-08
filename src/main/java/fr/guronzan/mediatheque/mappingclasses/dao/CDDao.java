@@ -2,13 +2,13 @@ package fr.guronzan.mediatheque.mappingclasses.dao;
 
 import java.util.ArrayList;
 
-import fr.guronzan.mediatheque.mappingclasses.domain.CD;
+import fr.guronzan.mediatheque.mappingclasses.domain.Cd;
 
-public interface CDDao extends GenericDao<CD, Integer> {
+public interface CDDao extends GenericDao<Cd, Integer> {
 
-    CD getCdByTitle(final String title);
+    Cd getCdByTitle(final String title);
 
-    ArrayList<CD> getCdsByAuthor(final String name);
+    ArrayList<Cd> getCdsByAuthor(final String name);
 
     void removeAllCDs();
 

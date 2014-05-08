@@ -1,7 +1,5 @@
 ﻿package fr.guronzan.mediatheque.mappingclasses.domain;
 
-import static javax.persistence.GenerationType.IDENTITY;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -27,13 +25,19 @@ import javax.persistence.UniqueConstraint;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Table(name = "user", uniqueConstraints = { @UniqueConstraint(columnNames = "USER_ID") })
 @Data
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
-public class User implements DomainObject {
+public class User extends DomainObject {
+
+    /**
+     *
+     */
+    private static final long serialVersionUID = 3215824964081727768L;
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -72,7 +76,7 @@ public class User implements DomainObject {
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "cd_user", joinColumns = { @JoinColumn(name = "USER_ID", nullable = false, updatable = true) }, inverseJoinColumns = { @JoinColumn(name = "CD_ID", nullable = false, updatable = true) })
     @OrderColumn(name = "CD_COL")
-    private List<CD> cds = new ArrayList<>();
+    private List<Cd> cds = new ArrayList<>();
 
     /**
      *
@@ -97,7 +101,7 @@ public class User implements DomainObject {
         this.books.add(book);
     }
 
-    public void addCD(final CD cd) {
+    public void addCD(final Cd cd) {
         this.cds.add(cd);
     }
 

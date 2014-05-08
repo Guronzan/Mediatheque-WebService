@@ -1,14 +1,5 @@
 package fr.guronzan.mediatheque.webservice;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.anyOf;
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-
-import java.util.Collection;
 import java.util.Date;
 
 import javax.annotation.Resource;
@@ -19,7 +10,18 @@ import org.junit.Test;
 import fr.guronzan.mediatheque.mappingclasses.SpringTests;
 import fr.guronzan.mediatheque.mappingclasses.domain.Book;
 import fr.guronzan.mediatheque.mappingclasses.domain.User;
+import fr.guronzan.mediatheque.mappingclasses.domain.encapsulatedTypes.ListUsers;
 import fr.guronzan.mediatheque.utils.DigestUtils;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+
+import static org.hamcrest.Matchers.anyOf;
+import static org.hamcrest.Matchers.is;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 public class DBAccessTest extends SpringTests {
 
@@ -140,8 +142,8 @@ public class DBAccessTest extends SpringTests {
         final int addUser = addUser();
         final int addOtherUser = addOtherUser();
 
-        final Collection<User> allUsers = this.dbAccess.getAllUsers();
-        assertThat(allUsers.size(), is(2));
+        final ListUsers allUsers = this.dbAccess.getAllUsers();
+        assertThat(allUsers.getUsers().size(), is(2));
         for (final User user : allUsers) {
             assertThat(user.getNickName(), anyOf(is(NICK), is(OTHER_NICK)));
             assertThat(user.getUserId(), anyOf(is(addUser), is(addOtherUser)));

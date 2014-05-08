@@ -9,7 +9,7 @@
 		<property name="format_sql">true</property>
 		<mapping class="fr.guronzan.mediatheque.mappingclasses.domain.User" />
 		<mapping class="fr.guronzan.mediatheque.mappingclasses.domain.Movie" />
-		<mapping class="fr.guronzan.mediatheque.mappingclasses.domain.CD" />
+		<mapping class="fr.guronzan.mediatheque.mappingclasses.domain.Cd" />
 		<mapping class="fr.guronzan.mediatheque.mappingclasses.domain.Book" />
 	</session-factory>
 </hibernate-configuration>

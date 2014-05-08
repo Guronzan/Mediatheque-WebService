@@ -31,7 +31,12 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
-public class Book implements DomainObject {
+public class Book extends DomainObject {
+
+    /**
+     *
+     */
+    private static final long serialVersionUID = 6716427961386504021L;
 
     @Id
     @GeneratedValue(strategy = IDENTITY)

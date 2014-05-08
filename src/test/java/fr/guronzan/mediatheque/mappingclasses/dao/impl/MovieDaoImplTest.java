@@ -17,13 +17,13 @@ import fr.guronzan.mediatheque.mappingclasses.domain.User;
 import fr.guronzan.mediatheque.mappingclasses.domain.types.VideoType;
 import fr.guronzan.mediatheque.utils.DigestUtils;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-
 import static org.hamcrest.MatcherAssert.assertThat;
 
 import static org.hamcrest.Matchers.is;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 public class MovieDaoImplTest extends SpringTests {
 
@@ -82,7 +82,7 @@ public class MovieDaoImplTest extends SpringTests {
     public final void testGetMoviesByDirector() {
         assertTrue(this.movieDao.getMoviesByDirector(DIRECTOR).isEmpty());
         addNewMovie();
-        final List<Movie> moviesByDirector = (List<Movie>) this.movieDao
+        final List<Movie> moviesByDirector = this.movieDao
                 .getMoviesByDirector(DIRECTOR);
         assertThat(moviesByDirector.size(), is(1));
         assertThat(moviesByDirector.get(0).getDirectorName(), is(DIRECTOR));

@@ -30,7 +30,12 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
-public class CD implements DomainObject {
+public class Cd extends DomainObject {
+
+    /**
+     *
+     */
+    private static final long serialVersionUID = -5084447499770408765L;
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -56,7 +61,7 @@ public class CD implements DomainObject {
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "cds")
     private List<User> owners = new ArrayList<>();
 
-    public CD(final String title) {
+    public Cd(final String title) {
         this.title = title;
     }
 

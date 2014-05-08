@@ -32,7 +32,12 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
-public class Movie implements DomainObject {
+public class Movie extends DomainObject {
+
+    /**
+     *
+     */
+    private static final long serialVersionUID = -2938822439983204839L;
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
