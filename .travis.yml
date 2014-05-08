@@ -1,0 +1,9 @@
+language: java
+notifications:
+  irc: "irc.onlinegamesnet.net#Guronzan"
+before_script:
+  - mysql -e 'create user dbaccess identified by password "dVtqMa4tWEwsnzwY";'
+  - mysql -e 'create database mediathequetest;'
+  - mysql --user=root -e 'grant usage on mediathequetest.* to dbaccess@localhost identified by "dVtqMa4tWEwsnzwY";'
+  - mysql --user=root -e 'grant all privileges on mediathequetest.* to dbaccess@localhost ;'
+
